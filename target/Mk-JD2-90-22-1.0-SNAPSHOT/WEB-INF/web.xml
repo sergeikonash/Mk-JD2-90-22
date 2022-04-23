@@ -1,0 +1,11 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>Mk-JD2-90-22 starter pack</display-name>
+    <listener>
+        <listener-class>by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.listener.UsersLister</listener-class>
+    </listener>
+
+</web-app>
