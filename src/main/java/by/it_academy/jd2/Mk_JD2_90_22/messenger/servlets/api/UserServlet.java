@@ -1,7 +1,7 @@
 package by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.api;
 
 import by.it_academy.jd2.Mk_JD2_90_22.messenger.core.dto.User;
-import by.it_academy.jd2.Mk_JD2_90_22.messenger.service.UserService;
+import by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

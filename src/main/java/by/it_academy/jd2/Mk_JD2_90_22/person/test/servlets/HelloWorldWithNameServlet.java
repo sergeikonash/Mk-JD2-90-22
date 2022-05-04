@@ -1,4 +1,4 @@
-package by.it_academy.jd2.Mk_JD2_90_22.test.servlets;
+package by.it_academy.jd2.Mk_JD2_90_22.person.test.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

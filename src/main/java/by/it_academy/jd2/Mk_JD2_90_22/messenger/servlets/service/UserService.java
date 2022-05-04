@@ -1,4 +1,4 @@
-package by.it_academy.jd2.Mk_JD2_90_22.messenger.service;
+package by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.service;
 
 import by.it_academy.jd2.Mk_JD2_90_22.messenger.core.dto.User;
 

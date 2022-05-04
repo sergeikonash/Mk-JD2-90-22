@@ -2,7 +2,7 @@ package by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.api;
 
 import by.it_academy.jd2.Mk_JD2_90_22.messenger.core.dto.Message;
 import by.it_academy.jd2.Mk_JD2_90_22.messenger.core.dto.User;
-import by.it_academy.jd2.Mk_JD2_90_22.messenger.service.MessageService;
+import by.it_academy.jd2.Mk_JD2_90_22.messenger.servlets.service.MessageService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
