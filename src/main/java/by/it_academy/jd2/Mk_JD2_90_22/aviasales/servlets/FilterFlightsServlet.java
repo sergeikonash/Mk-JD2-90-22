@@ -12,20 +12,23 @@ import java.io.IOException;
 @WebServlet(name = "FilterFlightsServlet", urlPatterns = "/filterFlights")
 public class FilterFlightsServlet extends HttpServlet {
 
-    private static final String REQUEST_DATE_OF_DEPARTURE = null;
-    private static final String REQUEST_AIRPORT_OF_DEPARTURE = null;
-    private static final String REQUEST_DATE_OF_ARRIVAL = null;
-    private static final String REQUEST_AIRPORT_OF_ARRIVAL = null;
+    private static final String REQUEST_DATE_OF_DEPARTURE = "dateOfDeparture";
+    private static final String REQUEST_AIRPORT_OF_DEPARTURE = "airportOfDeparture";
+    private static final String REQUEST_DATE_OF_ARRIVAL = "dateOfArrival";
+    private static final String REQUEST_AIRPORT_OF_ARRIVAL = "airportOfArrival";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        FlightsService flightsService = new FlightsService();
+        String dateOfDeparture = req.getParameter(REQUEST_DATE_OF_DEPARTURE);
+        String airportOfDeparture = req.getParameter(REQUEST_AIRPORT_OF_DEPARTURE);
+        String dateOfArrival = req.getParameter(REQUEST_DATE_OF_ARRIVAL);
+        String airportOfArrival = req.getParameter(REQUEST_AIRPORT_OF_ARRIVAL);
 
-        flightsService.setDateOfDeparture(req.getParameter(REQUEST_DATE_OF_DEPARTURE));
-        flightsService.setAirportOfDeparture(req.getParameter(REQUEST_AIRPORT_OF_DEPARTURE));
-        flightsService.setDateOfArrival(req.getParameter(REQUEST_DATE_OF_ARRIVAL));
-        flightsService.setAirportOfArrival(req.getParameter(REQUEST_AIRPORT_OF_ARRIVAL));
+        FlightsService.setDateOfDeparture(dateOfDeparture);
+        FlightsService.setAirportOfDeparture(airportOfDeparture);
+        FlightsService.setDateOfArrival(dateOfArrival);
+        FlightsService.setAirportOfArrival(airportOfArrival);
 
         String contextPath = req.getContextPath();
         resp.sendRedirect(contextPath + "/flightsWithFilters");

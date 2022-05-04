@@ -35,6 +35,7 @@ public class Main1 {
 //        //время получения всех по одной
 //        System.out.println(stop - start);
         FlightsService flightsService = new FlightsService();
+        flightsService.setAirportOfArrival("VVO");
         System.out.println(flightsService.filteredList());
     }
 }

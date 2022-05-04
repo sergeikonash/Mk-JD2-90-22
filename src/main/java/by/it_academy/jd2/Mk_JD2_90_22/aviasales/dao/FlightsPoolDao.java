@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,8 +93,8 @@ public class FlightsPoolDao implements IAirportDao {
     private Flight map(ResultSet rs) throws SQLException {
         return new Flight(
                 rs.getString("flight_no"),
-                rs.getString("scheduled_departure"),
-                rs.getString("scheduled_arrival"),
+                toDate(rs.getString("scheduled_departure")),
+                toDate(rs.getString("scheduled_arrival")),
                 rs.getString("departure_airport"),
                 rs.getString("arrival_airport")
         );
@@ -99,5 +103,12 @@ public class FlightsPoolDao implements IAirportDao {
     @Override
     public void close() throws Exception {
         DataSources.destroy(this.ds);
+    }
+
+    private LocalDate toDate(String stringDate) {
+        LocalDateTime formatter = LocalDateTime.parse(stringDate.replaceAll(" ", "T").substring(0, 19));
+//        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
+//        DateTime dateTime = DateTime.parse(dateInString, formatter);
+        return formatter.toLocalDate();
     }
 }

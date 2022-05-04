@@ -1,14 +1,17 @@
 package by.it_academy.jd2.Mk_JD2_90_22.aviasales.dao;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Flight {
 
     private String flightNumber;
-    private String dateOfDeparture;
-    private String dateOfArrival;
+    private LocalDate dateOfDeparture;
+    private LocalDate dateOfArrival;
     private String airportOfDeparture;
     private String airportOfArrival;
 
-    public Flight(String flightNumber, String dateOfDeparture, String dateOfArrival, String airportOfDeparture, String airportOfArrival) {
+    public Flight(String flightNumber, LocalDate dateOfDeparture, LocalDate dateOfArrival, String airportOfDeparture, String airportOfArrival) {
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfArrival = dateOfArrival;
         this.airportOfDeparture = airportOfDeparture;
@@ -16,19 +19,19 @@ public class Flight {
         this.flightNumber = flightNumber;
     }
 
-    public String getDateOfDeparture() {
+    public LocalDate getDateOfDeparture() {
         return dateOfDeparture;
     }
 
-    public void setDateOfDeparture(String dateOfDeparture) {
+    public void setDateOfDeparture(LocalDate dateOfDeparture) {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    public String getDateOfArrival() {
+    public LocalDate getDateOfArrival() {
         return dateOfArrival;
     }
 
-    public void setDateOfArrival(String dateOfArrival) {
+    public void setDateOfArrival(LocalDate dateOfArrival) {
         this.dateOfArrival = dateOfArrival;
     }
 
