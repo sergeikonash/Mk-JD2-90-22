@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -21,14 +22,21 @@
 </div>
 <form action="${pageContext.request.contextPath}/filterFlights" method="POST">
     <p>Дата вылета*: <input type="text" name="dateOfDeparture" />
-       Аэропорт вылета: <select name="airportSelect">
-                        <c:forEach  var="airport" items="${airports}">
-                            <option name="airportOption" value="${airport.name}">${airport.name}</option>
-                        </c:forEach>
+       Аэропорт вылета:
+        <select name="airportOfDeparture">
+            <option disabled selected value> Выбрать аэропорт </option>
+            <c:forEach  var="airport" items="${airports}">
+                <option name="airport" value="${airport}">${airport}</option>
+            </c:forEach>
         </select>
-    <p id="showValue"></p>
        Дата прилета*: <input type="text" name="dateOfArrival"/>
-       Аэропорт прилета: <input type="text" name="airportOfArrival"/>
+       Аэропорт прилета:
+        <select name="airportOfArrival">
+            <option disabled selected value> Выбрать аэропорт </option>
+            <c:forEach  var="airport" items="${airports}">
+                <option name="airport" value="${airport}">${airport}</option>
+            </c:forEach>
+        </select>
        <input type="submit" value="Найти"><br><br>
     </p>
     <p>* дата в формате "гггг-мм-дд"</p>
