@@ -5,7 +5,6 @@ import by.it_academy.jd2.Mk_JD2_90_22.aviasales.dao.FlightsPoolDao;
 import by.it_academy.jd2.Mk_JD2_90_22.aviasales.dao.IAirportDao;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class FlightsService {
     }
 
     public static void setDateOfDeparture(String date) {
-        if (date.equals(empty)) {
+        if (date == null || date.equals(empty)) {
             dateOfDeparture = null;
         } else {
             dateOfDeparture = toDate(date);
@@ -41,7 +40,7 @@ public class FlightsService {
     }
 
     public static void setDateOfArrival(String date) {
-        if (date.equals(empty)) {
+        if (date == null || date.equals(empty)) {
             dateOfArrival = null;
         } else {
             dateOfArrival = toDate(date);
@@ -53,7 +52,7 @@ public class FlightsService {
     }
 
     public static void setAirportOfDeparture(String airportFromUser) {
-        if (airportFromUser.equals(empty)) {
+        if (airportFromUser == null || airportFromUser.equals(empty)) {
             airportOfDeparture = null;
         } else {
             airportOfDeparture = airportFromUser;
@@ -65,7 +64,7 @@ public class FlightsService {
     }
 
     public static void setAirportOfArrival(String airportFromUser) {
-        if (airportFromUser.equals(empty)) {
+        if (airportFromUser == null || airportFromUser.equals(empty)) {
             airportOfArrival = null;
         } else {
             airportOfArrival = airportFromUser;
@@ -81,23 +80,23 @@ public class FlightsService {
             return flights;
         }
         List<Flight> filtered = new ArrayList<>();
-        boolean booleanDateOfDeparture = false;
-        boolean booleanDateOfArrival = false;
-        boolean booleanAirportOfDeparture = false;
-        boolean booleanAirportOfArrival = false;
 
         for (Flight flight : flights) {
+            boolean booleanDateOfDeparture = false;
+            boolean booleanDateOfArrival = false;
+            boolean booleanAirportOfDeparture = false;
+            boolean booleanAirportOfArrival = false;
 
-            if (flight.getDateOfDeparture().equals(dateOfDeparture) || dateOfDeparture == null) {
+            if (dateOfDeparture == null || flight.getDateOfDeparture().equals(dateOfDeparture)) {
                 booleanDateOfDeparture = true;
             }
-            if (flight.getDateOfArrival().equals(dateOfArrival) || dateOfArrival == null) {
+            if (dateOfArrival == null || flight.getDateOfArrival().equals(dateOfArrival)) {
                 booleanDateOfArrival = true;
             }
-            if (flight.getAirportOfDeparture().equals(airportOfDeparture) || airportOfDeparture == null) {
+            if (airportOfDeparture == null || flight.getAirportOfDeparture().equals(airportOfDeparture)) {
                 booleanAirportOfDeparture = true;
             }
-            if (flight.getAirportOfArrival().equals(airportOfArrival) || airportOfArrival == null) {
+            if (airportOfArrival == null || flight.getAirportOfArrival().equals(airportOfArrival)) {
                 booleanAirportOfArrival = true;
             }
 
@@ -108,11 +107,21 @@ public class FlightsService {
         return filtered;
     }
     private static LocalDate toDate(String stringDate) {
-        if (stringDate != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        if (stringDate != null && stringDate != empty) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return LocalDate.parse(stringDate, formatter);
         } else {
             return null;
         }
+    }
+
+    public List<String> getAirports() {
+        List<String> listAirports = new ArrayList<>();
+        for (Flight flight : flights) {
+            if (!listAirports.contains(flight.getAirportOfDeparture())) {
+                listAirports.add(flight.getAirportOfDeparture());
+            }
+        }
+        return listAirports;
     }
 }

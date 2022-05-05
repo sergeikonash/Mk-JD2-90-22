@@ -18,7 +18,9 @@ public class FlightsWithFiltersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         FlightsService flightsService = new FlightsService();
         List<Flight> flights = flightsService.filteredList();
+        List<String> airports = flightsService.getAirports();
         req.setAttribute("flights", flights);
+        req.setAttribute("airports", airports);
 
         req.getRequestDispatcher("jsp/aviasales/FlightsWithFilters.jsp").forward(req, resp);
     }

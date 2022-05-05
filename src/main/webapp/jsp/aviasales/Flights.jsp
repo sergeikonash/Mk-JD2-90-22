@@ -21,7 +21,12 @@
 </div>
 <form action="${pageContext.request.contextPath}/filterFlights" method="POST">
     <p>Дата вылета*: <input type="text" name="dateOfDeparture" />
-       Аэропорт вылета: <input type="text" name="airportOfDeparture"/>
+       Аэропорт вылета: <select name="airportSelect">
+                        <c:forEach  var="airport" items="${airports}">
+                            <option name="airportOption" value="${airport.name}">${airport.name}</option>
+                        </c:forEach>
+        </select>
+    <p id="showValue"></p>
        Дата прилета*: <input type="text" name="dateOfArrival"/>
        Аэропорт прилета: <input type="text" name="airportOfArrival"/>
        <input type="submit" value="Найти"><br><br>
