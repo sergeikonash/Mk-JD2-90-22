@@ -15,7 +15,7 @@
             text-align:  center;
         }
         table {
-            width: 1000px;
+            width: 1350px;
             border: 1px solid green;
             border-collapse: collapse;
             margin: auto;
@@ -32,20 +32,30 @@
 </div>
 <table>
     <tr>
+        <td>Id рейса</td>
         <td>Номер рейса</td>
         <td>Дата вылета</td>
         <td>Аэропорт вылета</td>
         <td>Дата прилета</td>
         <td>Аэропорт прилета</td>
+        <td>Статус</td>
+        <td>Код самолета</td>
+        <td>Актуальная дата вылета</td>
+        <td>Актуальная дата прилета</td>
     </tr>
     <%--@elvariable id="flights" type="java.util.List"--%>
     <c:forEach items="${flights}" var="flight" >
         <tr>
+            <td>${flight.getFlightId()}</td>
             <td>${flight.getFlightNumber()}</td>
             <td>${flight.getDateOfDeparture()}</td>
             <td>${flight.getAirportOfDeparture()}</td>
             <td>${flight.getDateOfArrival()}</td>
             <td>${flight.getAirportOfArrival()}</td>
+            <td>${flight.getStatus()}</td>
+            <td>${flight.getAircraftCode()}</td>
+            <td>${flight.getActualDeparture()}</td>
+            <td>${flight.getActualArrival()}</td>
         </tr>
     </c:forEach>
 </table>

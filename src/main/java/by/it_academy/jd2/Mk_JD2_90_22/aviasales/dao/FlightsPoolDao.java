@@ -41,11 +41,16 @@ public class FlightsPoolDao implements IAirportDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
                      "SELECT\n" +
+                             "    flight_id,\n" +
                              "    flight_no,\n" +
                              "    scheduled_departure,\n" +
                              "    scheduled_arrival,\n" +
                              "    departure_airport,\n" +
-                             "    arrival_airport\n" +
+                             "    arrival_airport,\n" +
+                             "    status,\n" +
+                             "    aircraft_code,\n" +
+                             "    actual_departure,\n" +
+                             "    actual_arrival\n" +
                              "FROM\n" +
                              "    bookings.flights\n" +
                              "ORDER BY scheduled_departure;"
@@ -66,11 +71,16 @@ public class FlightsPoolDao implements IAirportDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(
                      "SELECT\n" +
+                             "    flight_id,\n" +
                              "    flight_no,\n" +
                              "    scheduled_departure,\n" +
                              "    scheduled_arrival,\n" +
                              "    departure_airport,\n" +
-                             "    arrival_airport\n" +
+                             "    arrival_airport,\n" +
+                             "    status,\n" +
+                             "    aircraft_code,\n" +
+                             "    actual_departure,\n" +
+                             "    actual_arrival\n" +
                              "FROM\n" +
                              "    bookings.flights\n" +
                              "WHERE flight_no = '" + flightNumber + "';"
@@ -92,11 +102,16 @@ public class FlightsPoolDao implements IAirportDao {
 
     private Flight map(ResultSet rs) throws SQLException {
         return new Flight(
+                rs.getInt("flight_id"),
                 rs.getString("flight_no"),
                 toDate(rs.getString("scheduled_departure")),
                 toDate(rs.getString("scheduled_arrival")),
                 rs.getString("departure_airport"),
-                rs.getString("arrival_airport")
+                rs.getString("arrival_airport"),
+                rs.getString("status"),
+                rs.getString("aircraft_code"),
+                toZonedDateTime(rs.getString("actual_departure")),
+                toZonedDateTime(rs.getString("actual_arrival"))
         );
     }
 
@@ -110,5 +125,14 @@ public class FlightsPoolDao implements IAirportDao {
 //        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
 //        DateTime dateTime = DateTime.parse(dateInString, formatter);
         return formatter.toLocalDate();
+    }
+
+    private ZonedDateTime toZonedDateTime(String stringDate) {
+        if (stringDate != null) {
+            stringDate = stringDate.replaceAll(" ", "T") + ":00";
+            ZonedDateTime zonedDateTime = ZonedDateTime.parse(stringDate, DateTimeFormatter.ISO_DATE_TIME);
+            return zonedDateTime;
+        }
+        return null;
     }
 }
